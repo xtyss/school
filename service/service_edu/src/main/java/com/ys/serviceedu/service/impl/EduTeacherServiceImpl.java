@@ -2,12 +2,13 @@ package com.ys.serviceedu.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ys.serviceedu.entity.EduTeacher;
 import com.ys.serviceedu.entity.vo.QueryTeacher;
 import com.ys.serviceedu.mapper.EduTeacherMapper;
 import com.ys.serviceedu.service.EduTeacherService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 /**
  * <p>
@@ -23,10 +24,21 @@ public class EduTeacherServiceImpl extends ServiceImpl<EduTeacherMapper, EduTeac
     @Override
     public void pageQuery(Page<EduTeacher> page, QueryTeacher teacherQuery) {
         QueryWrapper<EduTeacher> teacherQueryWrapper = new QueryWrapper<EduTeacher>();
-        teacherQueryWrapper.like("name",teacherQuery.getName())
-                .eq("level",teacherQuery.getLevel())
-                .ge("gmt_create",teacherQuery.getBegin())
-                .le("gmt_create",teacherQuery.getEnd());
+        if (!StringUtils.isEmpty(teacherQuery.getName())){
+            teacherQueryWrapper.like("name",teacherQuery.getName());
+        }
+
+        if (!StringUtils.isEmpty(teacherQuery.getLevel())){
+            teacherQueryWrapper.eq("level",teacherQuery.getLevel());
+        }
+
+        if (!StringUtils.isEmpty(teacherQuery.getBegin())){
+            teacherQueryWrapper.ge("gmt_create",teacherQuery.getBegin());
+        }
+
+        if (!StringUtils.isEmpty(teacherQuery.getEnd())){
+            teacherQueryWrapper.le("gmt_create",teacherQuery.getEnd());
+        }
         baseMapper.selectPage(page,teacherQueryWrapper);
 
     }

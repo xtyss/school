@@ -25,12 +25,18 @@ import java.util.List;
 @Api("讲师管理")
 @RestController
 @RequestMapping("/eduService/edu_teacher")
+@CrossOrigin
 public class EduTeacherController {
-    //把service注入
+    /**
+     *  把service注入
+     */
     @Autowired
     private EduTeacherService teacherService;
 
-    //查询所有
+    /**
+     * 查询所有
+     * @return 封装的查询结果
+     */
     @ApiOperation("查询所有讲师")
     @GetMapping()
     public Result findAll() {
@@ -38,7 +44,11 @@ public class EduTeacherController {
         return Result.success().data("items", eduTeacherList);
     }
 
-    //逻辑删除
+    /**
+     * 逻辑删除
+     * @param id 讲师id
+     * @return 删除是否成功
+     */
     @ApiOperation("根据ID逻辑删除讲师信息")
     @DeleteMapping("{id}")
     public Result remove(@ApiParam(name = "id", value = "讲师ID", required = true) @PathVariable String id) {
@@ -56,7 +66,7 @@ public class EduTeacherController {
      *
      * @param cur   当前页
      * @param limit 每页数据量
-     * @return
+     * @return 封装的结果集
      */
     @GetMapping("/findByPage/{cur}/{limit}")
     public Result findByPage(@PathVariable long cur,
@@ -71,15 +81,13 @@ public class EduTeacherController {
 
         return Result.success().data("total", total).data("rows", records);
     }
-
-    @GetMapping("pageTeacherCondition/{cur}/{limit}")
+    @PostMapping("/pageTeacherCondition/{cur}/{limit}")
     public Result pageQuery(
             @ApiParam(name = "cur", value = "当前页码", required = true)
             @PathVariable Integer cur,
             @ApiParam(name = "limit", value = "每页条数", required = true)
             @PathVariable Integer limit,
-            @ApiParam(name = "teacherQuery", value = "查询对象", required = true)
-            @PathVariable QueryTeacher queryTeacher
+            @RequestBody(required = false) QueryTeacher queryTeacher
     ) {
 
         Page<EduTeacher> page = new Page<EduTeacher>(cur, limit);
@@ -92,7 +100,7 @@ public class EduTeacherController {
      * @param eduTeacher 传递的讲师信息
      * @return 结果参数
      */
-    @PostMapping("updateTeacher")
+    @PostMapping("/updateTeacher")
     public Result updateTeacher(@RequestBody EduTeacher eduTeacher){
         boolean flag = teacherService.updateById(eduTeacher);
         if (flag) {
