@@ -14,6 +14,7 @@
     <modules>
         <module>service_edu</module>
         <module>service_vod</module>
+        <module>service_oss</module>
     </modules>
     <dependencies>
         <!--<dependency>
@@ -102,6 +103,10 @@
             <version>4.12</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.aliyun.oss</groupId>
+            <artifactId>aliyun-sdk-oss</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.ys</groupId>
             <artifactId>service_base</artifactId>

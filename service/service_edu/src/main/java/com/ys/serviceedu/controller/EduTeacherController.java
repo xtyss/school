@@ -50,7 +50,7 @@ public class EduTeacherController {
      * @return 删除是否成功
      */
     @ApiOperation("根据ID逻辑删除讲师信息")
-    @DeleteMapping("{id}")
+    @DeleteMapping("/delete/{id}")
     public Result remove(@ApiParam(name = "id", value = "讲师ID", required = true) @PathVariable String id) {
         boolean b = teacherService.removeById(id);
 
@@ -108,7 +108,25 @@ public class EduTeacherController {
         } else {
             return Result.error();
         }
+    }
 
+    @PostMapping("/addTeacher")
+    public Result addTeacher(@RequestBody EduTeacher eduTeacher){
+        boolean flag = teacherService.save(eduTeacher);
+        if (flag) {
+            return Result.success();
+        } else {
+            return Result.error();
+        }
+    }
+
+    @ApiOperation("根据ID查询教师用户")
+    @GetMapping("/queryTeacherByID/{ID}")
+    public Result queryTeacherByID(
+            @ApiParam(name = "ID", value = "教师ID", required = true)
+            @PathVariable("ID") String ID){
+        EduTeacher teacher = teacherService.getById(ID);
+        return Result.success().data("teacher",teacher);
     }
 }
 

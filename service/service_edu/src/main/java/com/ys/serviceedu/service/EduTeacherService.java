@@ -14,5 +14,7 @@ import com.ys.serviceedu.entity.vo.QueryTeacher;
  * @since 2020-09-09
  */
 public interface EduTeacherService extends IService<EduTeacher> {
+
     void pageQuery(Page<EduTeacher> pageParam, QueryTeacher teacherQuery);
+
 }
