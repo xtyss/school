@@ -18,4 +18,14 @@ public class GlobalExceptionHandler {
         e.printStackTrace();
         return Result.error().message("执行了全局异常处理");
     }
+
+
+    @ExceptionHandler(YsException.class)
+    @ResponseBody
+    public Result err(YsException e){
+        log.error(e.getMessage());
+
+        e.printStackTrace();
+        return Result.error().message(e.getMessage());
+    }
 }
