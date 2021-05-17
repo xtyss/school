@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2021-04-21
  */
 @RestController
-@RequestMapping("/serviceedu/edu-course-description")
+@RequestMapping("/eduService/edu-course-description")
 public class EduCourseDescriptionController {
 
 }

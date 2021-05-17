@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 @Api("课程管理相关需求")
 @RestController
 @CrossOrigin
-@RequestMapping("/serviceedu/edu-course")
+@RequestMapping("/eduService/edu-course")
 public class EduCourseController {
 
     @Autowired
@@ -33,7 +33,7 @@ public class EduCourseController {
     public Result addCourse(	@ApiParam(name = "CourseInfoForm", value = "课程基本信息", required = true)
                                     @RequestBody CourseInfoForm courseInfoForm){
         String courseId  = eduCourseService.addCourse(courseInfoForm);
-        return Result.success();
+        return Result.success().data("courseId",courseId);
     }
 }
 

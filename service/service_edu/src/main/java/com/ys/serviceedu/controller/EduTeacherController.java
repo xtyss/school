@@ -38,7 +38,7 @@ public class EduTeacherController {
      * @return 封装的查询结果
      */
     @ApiOperation("查询所有讲师")
-    @GetMapping()
+    @GetMapping("/findAll")
     public Result findAll() {
         List<EduTeacher> eduTeacherList = teacherService.list(null);
         return Result.success().data("items", eduTeacherList);

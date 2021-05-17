@@ -29,6 +29,9 @@ public class CourseInfoForm implements Serializable {
     @ApiModelProperty(value = "课程标题")
     private String title;
 
+    @ApiModelProperty(value = "课程专业父级ID")
+    private String subjectParentId;
+
     @ApiModelProperty(value = "课程销售价格，设置为0则可免费观看")
     private BigDecimal price;
 
