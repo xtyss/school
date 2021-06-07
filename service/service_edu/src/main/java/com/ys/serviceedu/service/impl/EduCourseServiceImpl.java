@@ -37,7 +37,7 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
 
         EduCourseDescription eduCourseDescription = new EduCourseDescription();
         eduCourseDescription.setDescription(courseInfoForm.getDescription());
-        eduCourseDescription.setId(courseInfoForm.getId());
+        eduCourseDescription.setId(eduCourse.getId());
         boolean desFlag = eduCourseDescriptionService.save(eduCourseDescription);
         if (!desFlag){
             throw new YsException(20001,"课程新建失败");

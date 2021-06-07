@@ -35,5 +35,16 @@ public class EduCourseController {
         String courseId  = eduCourseService.addCourse(courseInfoForm);
         return Result.success().data("courseId",courseId);
     }
+
+    public Result updateCourse(){
+        return Result.success();
+    }
+
+    @ApiOperation(value = "根据课程id查找课程")
+    @GetMapping("/getCourseById/{courseId}")
+    public Result getCourseById(@PathVariable String courseId){
+
+        return Result.success();
+    }
 }
 
